@@ -1,0 +1,94 @@
+.center-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #5330D0;
+    padding: 1rem;
+}
+
+.formLogin {
+    background-color: aliceblue;
+    border-radius: 2rem;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    /* evita ficar largo demais */
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.cadastrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon-hover {
+    display: none; /* escondido por padrão */
+}
+
+.cadastrar:hover .icon-normal {
+    display: none; /* esconde o ícone normal */
+}
+
+.cadastrar:hover .icon-hover {
+    display: inline-block; /* mostra o ícone hover */
+}
+
+.cadastrar:hover {
+    animation: moverDireita 0.3s forwards;
+}
+
+@keyframes moverDireita {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(6px); }
+}
+
+
+
+
+
+
+/* @keyframes moverDireita {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
+    100% { transform: translateX(0); }
+}
+
+.cadastrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    animation: moverDireita 1s ease-in-out infinite;
+} */
+
+
+/* .cadastrar {
+    display: inline-block;
+    position: relative;
+    padding-right: 20px;
+    transition: all 0, 3s ease;
+}
+
+.cadastrar::after {
+    content: "→";
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+.cadastrar:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+} */
