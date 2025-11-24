@@ -1,0 +1,41 @@
+.main-content {
+  margin-left: 300px;
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.collapsed {
+  margin-left: 80px;
+}
+
+.opcoes-turma-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px 20px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.opcoes-turma-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.opcoes-turma-icone {
+    font-size: 2.8rem;
+    color: #5a2cc7;
+    margin-bottom: 14px;
+}
+
+.opcoes-turma-titulo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 5px;
+}

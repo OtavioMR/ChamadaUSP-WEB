@@ -25,6 +25,7 @@ export default function LoginProfessor() {
 
             console.log("Logado!", response.data);
             alert("Login realizado!");
+            navigate("/turma-professor");
 
 
             setEmail("");

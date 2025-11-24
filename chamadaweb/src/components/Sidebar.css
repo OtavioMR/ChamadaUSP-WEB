@@ -1,0 +1,329 @@
+/* src/components/Sidebar.css */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 300px;
+  background-color: #5330D0;
+  color: white;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-collapsed {
+  width: 80px;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 80px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 24px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.sidebar-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  margin: 0 10px;
+  border-radius: 8px;
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-item.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-left: 8px solid #ffbb00; 
+}
+
+.sidebar-icon {
+  font-size: 18px;
+  min-width: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-label {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Footer e Logout */
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.sidebar-logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.logout-icon {
+  font-size: 16px;
+}
+
+.logout-text {
+  font-weight: 500;
+}
+
+/* Quando a sidebar estiver colapsada */
+.sidebar-collapsed .sidebar-item {
+  justify-content: center;
+  padding: 12px;
+}
+
+.sidebar-collapsed .sidebar-label {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-footer {
+  padding: 20px 10px;
+}
+
+.sidebar-collapsed .sidebar-logout-btn {
+  justify-content: center;
+  padding: 12px;
+}
+
+.sidebar-collapsed .logout-text {
+  display: none;
+}
+
+/* ===== BOTÃO SAIR MOBILE ===== */
+.mobile-logout-btn {
+  display: none; /* Escondido por padrão */
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(255, 65, 65);
+  z-index: 1001;
+  top: 10px; /* Subiu ainda mais */
+  right: 15px; /* Mais para a esquerda (menos right = mais esquerda) */
+}
+
+/* plus sign */
+.mobile-logout-btn .sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-logout-btn .sign svg {
+  width: 17px;
+}
+
+.mobile-logout-btn .sign svg path {
+  fill: white;
+}
+
+/* text */
+.mobile-logout-text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+  white-space: nowrap; /* Garante que o texto não quebre */
+}
+
+/* hover effect on button width */
+.mobile-logout-btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+  right: 5px; /* Ajusta a posição quando expande (mais para esquerda) */
+}
+
+.mobile-logout-btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+
+/* hover effect button's text */
+.mobile-logout-btn:hover .mobile-logout-text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 15px; /* Mais espaço no texto */
+}
+
+/* button click effect*/
+.mobile-logout-btn:active {
+  transform: translate(2px ,2px);
+}
+
+/* ===== RESPONSIVIDADE CORRIGIDA ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+    height: 70px !important;
+    bottom: 0 !important;
+    top: auto !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+  }
+
+  .sidebar-header {
+    display: none !important;
+  }
+
+  .sidebar-nav {
+    flex-direction: row !important;
+    flex: 1 !important;
+    padding: 0 10px !important;
+    gap: 0 !important;
+    justify-content: space-around !important;
+  }
+
+  .sidebar-item {
+    flex-direction: column !important;
+    margin: 0 5px !important;
+    padding: 8px 5px !important;
+    border-radius: 6px !important;
+    min-width: 60px !important;
+  }
+
+  .sidebar-item.active {
+    border-left: none !important;
+    border-top: 3px solid #ffbb00 !important;
+  }
+
+  .sidebar-icon {
+    font-size: 16px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .sidebar-label {
+    font-size: 10px !important;
+    white-space: nowrap !important;
+  }
+
+  .sidebar-footer {
+    display: none !important;
+  }
+
+  /* Remove colapso no mobile - sempre expandido */
+  .sidebar-collapsed {
+    width: 100% !important;
+  }
+
+  .sidebar-collapsed .sidebar-item {
+    justify-content: center !important;
+    flex-direction: column !important;
+  }
+
+  .sidebar-collapsed .sidebar-label {
+    display: block !important;
+  }
+
+  /* Mostra botão Sair mobile */
+  .mobile-logout-btn {
+    display: flex !important;
+  }
+
+  /* Ajusta o conteúdo principal para dar espaço ao botão */
+  .main-content {
+    margin-left: 0 !important;
+    margin-bottom: 70px !important;
+    width: 100% !important;
+    padding-bottom: 30px !important;
+    padding-top: 10px !important; /* Espaço extra no topo */
+  }
+}
+
+/* Para garantir que o botão não sobreponha o título em telas muito pequenas */
+@media (max-width: 480px) {
+  .mobile-logout-btn {
+    top: 8px; /* Ainda mais alto em telas pequenas */
+    right: 12px; /* Mais para esquerda */
+  }
+  
+  .mobile-logout-btn:hover {
+    right: 2px; /* Mais para esquerda quando expande */
+  }
+}
