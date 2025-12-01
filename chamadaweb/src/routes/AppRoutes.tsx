@@ -5,6 +5,8 @@ import CadastroAluno from "../pages/SignUp/CadastroAluno/cadastroAluno";
 import CadastroProfessor from "../pages/SignUp/CadastroProfessor/cadastroProfessor";
 import { InicioProfessor } from "../pages/Professor/inicio";
 import { ContaProfessor } from "../pages/Professor/conta";
+import { CriarTurma } from "../pages/Professor/criar-turma";
+import { VerTurmas } from "../pages/Professor/ver-turmas";
 
 
 export default function AppRoutes() {
@@ -15,8 +17,10 @@ export default function AppRoutes() {
                 <Route path="/login-aluno" element={<LoginAluno />} />
                 <Route path="/cadastro-aluno" element={<CadastroAluno />} />
                 <Route path="/cadastro-professor" element={<CadastroProfessor />} />
-                <Route path="/turma-professor" element={<InicioProfessor />} />
+                <Route path="/geral-professor" element={<InicioProfessor />} />
                 <Route path="/conta-professor" element={< ContaProfessor />} />
+                <Route path="/criar-turma" element={< CriarTurma />} />
+                <Route path="/turmas-professor" element={< VerTurmas />} />
             </Routes>
         </BrowserRouter>
     );

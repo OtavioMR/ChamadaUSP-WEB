@@ -1,0 +1,125 @@
+/* src/css/criarTurma.css — VERSÃO FINAL 100% FUNCIONANDO */
+
+.criar-turma-wrapper {
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 40px 20px 100px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Card do formulário */
+.form-card {
+  background: white;
+  border-radius: 20px;
+  padding: 45px 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e8e8e8;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+  height: 56px;
+  border-radius: 14px;
+  border: 1.5px solid #ddd;
+  font-size: 1.05rem;
+  padding: 0 18px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #5a2cc7;
+  box-shadow: 0 0 0 4px rgba(90, 44, 199, 0.15);
+}
+
+/* ================= BOTÕES CORRIGIDOS E LINDOS ================= */
+.botao-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.botao-criar,
+.botao-cancelar {
+  min-width: 180px;
+  height: 56px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  flex: 1;
+  max-width: 220px;
+}
+
+.botao-criar {
+  background: #5a2cc7;
+  border: none;
+  color: white;
+}
+
+.botao-criar:hover {
+  background: #4a1fb8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(90, 44, 199, 0.3);
+}
+
+.botao-cancelar {
+  background: white;
+  color: #666;
+  border: 2px solid #ddd;
+}
+
+.botao-cancelar:hover {
+  border-color: #bbb;
+  color: #444;
+  transform: translateY(-3px);
+}
+
+/* ================= RESPONSIVO — MOBILE PERFEITO ================= */
+@media (max-width: 768px) {
+  .main-content,
+  .main-content.collapsed {
+    margin-left: 0 !important;
+  }
+
+  .criar-turma-wrapper {
+    padding: 20px 15px 90px;
+  }
+
+  .form-card {
+    padding: 35px 25px;
+    border-radius: 18px;
+  }
+
+  .botao-container {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .botao-criar,
+  .botao-cancelar {
+    width: 100%;
+    max-width: none;
+    height: 54px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-card {
+    padding: 30px 20px;
+  }
+
+  .botao-criar,
+  .botao-cancelar {
+    height: 52px;
+    font-size: 1.05rem;
+  }
+}

@@ -15,7 +15,7 @@ export default function CadastroProfessor() {
     }
 
 
-    async function handleLogin() {
+    async function handleCadastro() {
         try {
             const response = await api.post("professor/Cadastro-Professor", {
                 nomeCompleto,
@@ -29,6 +29,8 @@ export default function CadastroProfessor() {
             setNome("");
             setNumero("");
             setSenha("");
+            navigate("/login-professor")
+
         } catch (error: any) {
             // Para erros do Axios, a resposta do servidor fica em error.response
             if (error.response) {
@@ -104,7 +106,7 @@ export default function CadastroProfessor() {
 
 
                     <div className="col-md-8 mt-3">
-                        <button className="btn btn-primary w-100" type="submit" onClick={handleLogin}>Cadastrar</button>
+                        <button className="btn btn-primary w-100" type="submit" onClick={handleCadastro}>Cadastrar</button>
                     </div>
 
                 </div>

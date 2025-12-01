@@ -1,13 +1,12 @@
-/* src/components/Sidebar.css */
+/* ================= SIDEBAR ================= */
 .sidebar {
   position: fixed;
-  left: 0;
-  top: 0;
+  inset: 0 auto 0 0;
   height: 100vh;
   width: 300px;
   background-color: #5330D0;
   color: white;
-  transition: all 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -18,6 +17,7 @@
   width: 80px;
 }
 
+/* ================= HEADER ================= */
 .sidebar-header {
   padding: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -39,54 +39,53 @@
 
 .logo-text {
   font-size: 18px;
-  font-weight: bold;
-  color: white;
+  font-weight: 700;
 }
 
 .sidebar-toggle {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.1);
   border: none;
   color: white;
   padding: 8px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: 0.3s;
 }
 
 .sidebar-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.2);
 }
 
+/* ================= MENU ================= */
 .sidebar-nav {
   flex: 1;
-  padding: 20px 0;
+  padding: 15px 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .sidebar-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 20px;
+  padding: 12px 18px;
+  margin: 0 10px;
   background: transparent;
   border: none;
   color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: left;
-  margin: 0 10px;
   border-radius: 8px;
+  transition: 0.3s;
 }
 
 .sidebar-item:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.1);
 }
 
 .sidebar-item.active {
-  background: rgba(255, 255, 255, 0.15);
-  border-left: 8px solid #ffbb00; 
+  background: rgba(255,255,255,0.15);
+  border-left: 6px solid #ffbb00;
 }
 
 .sidebar-icon {
@@ -99,13 +98,12 @@
 .sidebar-label {
   font-size: 14px;
   font-weight: 500;
-  white-space: nowrap;
 }
 
-/* Footer e Logout */
+/* ================= FOOTER ================= */
 .sidebar-footer {
   padding: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .sidebar-logout-btn {
@@ -114,35 +112,32 @@
   gap: 12px;
   width: 100%;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 8px;
   color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
   font-size: 14px;
 }
 
 .sidebar-logout-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.3);
 }
 
 .logout-icon {
   font-size: 16px;
 }
 
-.logout-text {
-  font-weight: 500;
-}
-
-/* Quando a sidebar estiver colapsada */
+/* ================= COLAPSADA ================= */
 .sidebar-collapsed .sidebar-item {
   justify-content: center;
   padding: 12px;
 }
 
-.sidebar-collapsed .sidebar-label {
+.sidebar-collapsed .sidebar-label,
+.sidebar-collapsed .logout-text {
   display: none;
 }
 
@@ -152,18 +147,13 @@
 
 .sidebar-collapsed .sidebar-logout-btn {
   justify-content: center;
-  padding: 12px;
 }
 
-.sidebar-collapsed .logout-text {
-  display: none;
-}
-
-/* ===== BOTÃO SAIR MOBILE ===== */
+/* ================= BOTÃO MOBILE ================= */
 .mobile-logout-btn {
-  display: none; /* Escondido por padrão */
+  display: none;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 45px;
   height: 45px;
   border: none;
@@ -171,159 +161,99 @@
   cursor: pointer;
   position: fixed;
   overflow: hidden;
-  transition-duration: .3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  transition: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
   background-color: rgb(255, 65, 65);
   z-index: 1001;
-  top: 10px; /* Subiu ainda mais */
-  right: 15px; /* Mais para a esquerda (menos right = mais esquerda) */
+  top: 10px;
+  right: 12px;
 }
 
-/* plus sign */
 .mobile-logout-btn .sign {
-  width: 100%;
-  transition-duration: .3s;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.mobile-logout-btn .sign svg {
-  width: 17px;
-}
-
-.mobile-logout-btn .sign svg path {
+.mobile-logout-btn svg {
+  width: 18px;
   fill: white;
 }
 
-/* text */
 .mobile-logout-text {
   position: absolute;
-  right: 0%;
-  width: 0%;
+  right: 10px;
   opacity: 0;
   color: white;
-  font-size: 1.2em;
+  font-size: 14px;
   font-weight: 600;
-  transition-duration: .3s;
-  white-space: nowrap; /* Garante que o texto não quebre */
+  white-space: nowrap;
+  transition: 0.3s;
 }
 
-/* hover effect on button width */
 .mobile-logout-btn:hover {
-  width: 125px;
-  border-radius: 40px;
-  transition-duration: .3s;
-  right: 5px; /* Ajusta a posição quando expande (mais para esquerda) */
+  width: 120px;
+  border-radius: 30px;
 }
 
-.mobile-logout-btn:hover .sign {
-  width: 30%;
-  transition-duration: .3s;
-  padding-left: 20px;
-}
-
-/* hover effect button's text */
 .mobile-logout-btn:hover .mobile-logout-text {
   opacity: 1;
-  width: 70%;
-  transition-duration: .3s;
-  padding-right: 15px; /* Mais espaço no texto */
 }
 
-/* button click effect*/
-.mobile-logout-btn:active {
-  transform: translate(2px ,2px);
-}
-
-/* ===== RESPONSIVIDADE CORRIGIDA ===== */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
   .sidebar {
-    width: 100% !important;
-    height: 70px !important;
-    bottom: 0 !important;
-    top: auto !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-around !important;
+    width: 100%;
+    height: 70px;
+    top: auto;
+    bottom: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
-  .sidebar-header {
-    display: none !important;
+  .sidebar-header,
+  .sidebar-footer {
+    display: none;
   }
 
   .sidebar-nav {
-    flex-direction: row !important;
-    flex: 1 !important;
-    padding: 0 10px !important;
-    gap: 0 !important;
-    justify-content: space-around !important;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 10px;
   }
 
   .sidebar-item {
-    flex-direction: column !important;
-    margin: 0 5px !important;
-    padding: 8px 5px !important;
-    border-radius: 6px !important;
-    min-width: 60px !important;
+    flex-direction: column;
+    padding: 6px 4px;
+    margin: 0 4px;
+    min-width: 60px;
   }
 
   .sidebar-item.active {
-    border-left: none !important;
-    border-top: 3px solid #ffbb00 !important;
-  }
-
-  .sidebar-icon {
-    font-size: 16px !important;
-    margin-bottom: 2px !important;
+    border-left: none;
+    border-top: 3px solid #ffbb00;
   }
 
   .sidebar-label {
-    font-size: 10px !important;
-    white-space: nowrap !important;
+    font-size: 10px;
   }
 
-  .sidebar-footer {
-    display: none !important;
-  }
-
-  /* Remove colapso no mobile - sempre expandido */
-  .sidebar-collapsed {
-    width: 100% !important;
-  }
-
-  .sidebar-collapsed .sidebar-item {
-    justify-content: center !important;
-    flex-direction: column !important;
-  }
-
-  .sidebar-collapsed .sidebar-label {
-    display: block !important;
-  }
-
-  /* Mostra botão Sair mobile */
   .mobile-logout-btn {
-    display: flex !important;
+    display: flex;
   }
 
-  /* Ajusta o conteúdo principal para dar espaço ao botão */
   .main-content {
-    margin-left: 0 !important;
-    margin-bottom: 70px !important;
-    width: 100% !important;
-    padding-bottom: 30px !important;
-    padding-top: 10px !important; /* Espaço extra no topo */
+    margin-left: 0;
+    margin-bottom: 70px;
+    padding: 10px 10px 30px;
   }
 }
 
-/* Para garantir que o botão não sobreponha o título em telas muito pequenas */
 @media (max-width: 480px) {
   .mobile-logout-btn {
-    top: 8px; /* Ainda mais alto em telas pequenas */
-    right: 12px; /* Mais para esquerda */
-  }
-  
-  .mobile-logout-btn:hover {
-    right: 2px; /* Mais para esquerda quando expande */
+    top: 8px;
+    right: 8px;
   }
 }

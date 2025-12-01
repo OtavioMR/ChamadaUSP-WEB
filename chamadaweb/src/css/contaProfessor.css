@@ -1,0 +1,150 @@
+/* CONTA PROFESSOR — VERSÃO FINAL 2025 */
+
+/* Fundo e centralização */
+.conta-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #e4e9fd);
+  padding: 20px 15px 120px;
+  display: flex;
+  align-items: flex-start;     /* mobile: começa logo no topo */
+  justify-content: center;
+}
+
+/* Card principal */
+.conta-card {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(90,44,199,0.18);
+  border: 1px solid #e8e8e8;
+}
+
+/* Header roxo lindo */
+.conta-header {
+  background: linear-gradient(135deg, #5a2cc7, #4a1fb8);
+  color: white;
+  text-align: center;
+  padding: 32px 20px;
+}
+
+.conta-header h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* Corpo do card */
+.conta-body {
+  padding: 32px 28px;
+}
+
+/* Cada linha de informação */
+.info {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.3s ease;
+}
+
+.info:hover {
+  background: white;
+  border-color: #5a2cc7;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(90,44,199,0.12);
+}
+
+.label {
+  display: block;
+  font-size: 0.95rem;
+  color: #5a2cc7;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.value {
+  display: block;
+  font-size: 1.15rem;
+  color: #222;
+  font-weight: 500;
+}
+
+/* Botões */
+.botoes {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+  justify-content: center;
+}
+
+.btn-editar,
+.btn-sair {
+  flex: 1;
+  height: 52px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.3s;
+}
+
+.btn-editar {
+  background: #5a2cc7;
+  color: white;
+  border: none;
+}
+
+.btn-editar:hover {
+  background: #4a1fb8;
+  transform: translateY(-3px);
+}
+
+.btn-sair {
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+}
+
+.btn-sair:hover {
+  background: #e74c3c;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* MOBILE — mais compacto e começa no topo */
+@media (max-width: 768px) {
+  .conta-wrapper {
+    padding: 15px 10px 100px;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  .conta-header {
+    padding: 28px 16px;
+  }
+
+  .conta-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .conta-body {
+    padding: 24px 20px;
+  }
+
+  .info {
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+
+  .botoes {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-editar,
+  .btn-sair {
+    height: 50px;
+  }
+}

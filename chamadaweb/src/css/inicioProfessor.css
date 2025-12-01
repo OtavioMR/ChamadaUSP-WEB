@@ -1,41 +1,151 @@
+/* src/css/inicioProfessor.css */
+/* Arquivo final — limpo, bonito e perfeito no mobile */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* ================= MAIN CONTENT ================= */
 .main-content {
   margin-left: 300px;
-  transition: margin-left 0.3s ease;
+  min-height: 100vh;
+  transition: margin-left 0.35s ease, padding 0.35s ease;
+  background: #f3f4f6;
+  padding: 20px 15px;
 }
 
 .main-content.collapsed {
   margin-left: 80px;
 }
 
-.opcoes-turma-card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 32px 20px;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* ================= WRAPPER CENTRAL ================= */
+.inicio-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
 
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transition: all 0.25s ease;
-    cursor: pointer;
+/* ================= CARDS ================= */
+.opcoes-turma-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 20px;
+  min-height: 230px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  user-select: none;
 }
 
 .opcoes-turma-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 45px rgba(90, 44, 199, 0.2);
+  border-color: #5a2cc7;
+}
+
+.opcoes-turma-card:active {
+  transform: translateY(-6px);
 }
 
 .opcoes-turma-icone {
-    font-size: 2.8rem;
-    color: #5a2cc7;
-    margin-bottom: 14px;
+  font-size: 3.4rem;
+  color: #5a2cc7;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.opcoes-turma-card:hover .opcoes-turma-icone {
+  transform: scale(1.15);
+  color: #4a1fb8;
 }
 
 .opcoes-turma-titulo {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #333;
-    margin-top: 5px;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #2d2d2d;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ================= RESPONSIVIDADE ================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .inicio-wrapper {
+    padding: 30px 15px;
+  }
+
+  .opcoes-turma-card {
+    min-height: 200px;
+    padding: 35px 15px;
+  }
+
+  .opcoes-turma-icone {
+    font-size: 3rem;
+  }
+
+  .opcoes-turma-titulo {
+    font-size: 1.35rem;
+  }
+}
+
+/* Mobile — AQUI TÁ TUDO CONSERTADO */
+@media (max-width: 768px) {
+  .main-content,
+  .main-content.collapsed {
+    margin-left: 0 !important;
+    padding: 15px 10px 80px 10px !important; /* só 80px embaixo → adeus espaço branco */
+  }
+
+  .inicio-wrapper {
+    padding: 20px 10px 0 !important;
+    min-height: auto;
+  }
+
+  .opcoes-turma-card {
+    min-height: 155px;
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+
+  .opcoes-turma-icone {
+    font-size: 2.6rem;
+    margin-bottom: 14px;
+  }
+
+  .opcoes-turma-titulo {
+    font-size: 1.25rem;
+  }
+}
+
+/* Mobile pequeno (iPhone SE, etc) */
+@media (max-width: 480px) {
+  .main-content {
+    padding-bottom: 75px !important;
+  }
+
+  .opcoes-turma-card {
+    min-height: 145px;
+    padding: 24px 16px;
+  }
+
+  .opcoes-turma-icone {
+    font-size: 2.4rem;
+  }
+
+  .opcoes-turma-titulo {
+    font-size: 1.2rem;
+  }
 }

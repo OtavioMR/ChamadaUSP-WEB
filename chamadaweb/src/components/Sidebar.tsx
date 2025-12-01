@@ -20,7 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onMenuSelect, activeMenu = 'inicio', 
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     const menuItems = [
-        { key: 'turmas', label: 'Turmas', icon: <InicioIcon /> },
+        { key: 'geral', label: 'Geral', icon: <InicioIcon /> },
         { key: 'chamadas', label: 'Chamadas', icon: <ChamadasIcon /> },
         { key: 'qrcode', label: 'Gerar QrCode', icon: <ColetaIcon /> },
         { key: 'conta', label: 'Conta', icon: <ContaIcon /> },

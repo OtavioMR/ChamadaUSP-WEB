@@ -1,0 +1,182 @@
+/* ==================== PÁGINA TODA ==================== */
+.turmas-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9fd 100%);
+  padding: 20px 15px 120px; /* 120px pra barra inferior no mobile */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* ==================== CONTAINER PRINCIPAL ==================== */
+.turmas-container {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(90, 44, 199, 0.2);
+}
+
+/* ==================== HEADER ROXO ==================== */
+.turmas-header {
+  background: linear-gradient(135deg, #5a2cc7, #4a1fb8);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.turmas-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.turmas-header p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  margin-top: 8px;
+}
+
+/* ==================== LISTA COM SCROLL INTERNO ==================== */
+.turmas-lista {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 30px 25px;
+  background: white;
+}
+
+/* Scroll bonito */
+.turmas-lista::-webkit-scrollbar {
+  width: 8px;
+}
+.turmas-lista::-webkit-scrollbar-thumb {
+  background: rgba(90, 44, 199, 0.4);
+  border-radius: 10px;
+}
+.turmas-lista::-webkit-scrollbar-thumb:hover {
+  background: #5a2cc7;
+}
+
+/* ==================== CADA TURMA ==================== */
+.turma-card {
+  background: #f8f9fa;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e5e5;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.turma-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: #5a2cc7;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+}
+
+.turma-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(90, 44, 199, 0.22);
+  background: white;
+  border-color: #5a2cc7;
+}
+
+.turma-card:hover::before {
+  transform: translateX(0);
+}
+
+.turma-card h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #5a2cc7;
+}
+
+.turma-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font-size: 0.98rem;
+  color: #444;
+}
+
+.turma-info span {
+  display: block;
+}
+
+.turma-info .codigo {
+  grid-column: 1 / -1;
+  background: #5a2cc7;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+
+/* ==================== TURMA VAZIA ==================== */
+.turma-vazia {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.turma-vazia i {
+  font-size: 4.5rem;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.turma-vazia p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* ==================== RESPONSIVO ==================== */
+@media (max-width: 768px) {
+  .turmas-page {
+    padding: 15px 10px 100px;
+  }
+
+  .turmas-header {
+    padding: 35px 20px;
+  }
+
+  .turmas-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .turmas-lista {
+    padding: 25px 20px;
+  }
+
+  .turma-card {
+    padding: 20px;
+  }
+
+  .turma-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .turma-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .turma-info .codigo {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
