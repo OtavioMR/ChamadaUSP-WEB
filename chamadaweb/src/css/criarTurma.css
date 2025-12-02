@@ -1,4 +1,4 @@
-/* src/css/criarTurma.css — VERSÃO FINAL 100% FUNCIONANDO */
+/* src/css/criarTurma.css — VERSÃO FINAL 100% FUNCIONANDO + RESPONSIVO PERFEITO */
 
 .criar-turma-wrapper {
   min-height: 100vh;
@@ -22,7 +22,8 @@
 
 /* Inputs */
 .form-control,
-.form-select {
+.form-select,
+.inputMateria {
   height: 56px;
   border-radius: 14px;
   border: 1.5px solid #ddd;
@@ -36,7 +37,7 @@
   box-shadow: 0 0 0 4px rgba(90, 44, 199, 0.15);
 }
 
-/* ================= BOTÕES CORRIGIDOS E LINDOS ================= */
+/* ================= BOTÕES ================= */
 .botao-container {
   display: flex;
   gap: 20px;
@@ -82,44 +83,82 @@
   transform: translateY(-3px);
 }
 
-/* ================= RESPONSIVO — MOBILE PERFEITO ================= */
-@media (max-width: 768px) {
-  .main-content,
-  .main-content.collapsed {
-    margin-left: 0 !important;
-  }
+/* ================= RESPONSIVO PERFEITO (CORRIGIDO E MELHORADO) ================= */
 
+@media (max-width: 992px) {
+  /* Tablet e telas menores com sidebar */
   .criar-turma-wrapper {
-    padding: 20px 15px 90px;
+    padding: 30px 20px 100px;
   }
 
   .form-card {
-    padding: 35px 25px;
+    padding: 40px 35px;
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Remove qualquer margem lateral causada pela sidebar */
+  .main-content,
+  .main-content.collapsed {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .criar-turma-wrapper {
+    padding: 20px 16px 90px;
+    align-items: stretch;
+  }
+
+  .form-card {
+    padding: 38px 28px;
     border-radius: 18px;
+    max-width: 100%;
   }
 
   .botao-container {
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
   }
 
   .botao-criar,
   .botao-cancelar {
     width: 100%;
     max-width: none;
-    height: 54px;
+    height: 56px;
     font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
+  .criar-turma-wrapper {
+    padding: 15px 12px 80px;
+  }
+
   .form-card {
-    padding: 30px 20px;
+    padding: 32px 20px;
+    border-radius: 16px;
+  }
+
+  .form-control,
+  .form-select,
+  .inputMateria {
+    height: 54px;
+    font-size: 1rem;
   }
 
   .botao-criar,
   .botao-cancelar {
-    height: 52px;
+    height: 54px;
     font-size: 1.05rem;
   }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Extra: garante que não tenha scroll horizontal indesejado */
+* {
+  box-sizing: border-box;
 }
