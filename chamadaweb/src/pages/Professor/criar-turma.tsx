@@ -19,7 +19,6 @@ export function CriarTurma() {
     const [nomeCurso, setNomeCurso] = useState("");
     const [ano, setAno] = useState("");
     const [semestre, setSemestre] = useState("");
-    const [materiasIds, setMateriaId] = useState<number | null>(null); // ID da matéria selecionada
     const [novaMateria, setNovaMateria] = useState(""); // Para criar nova matéria (opcional)
 
     // Matérias
@@ -27,11 +26,16 @@ export function CriarTurma() {
     const [loadingMaterias, setLoadingMaterias] = useState(true);
     const [errorMaterias, setErrorMaterias] = useState<string | null>(null);
 
+    const [materiaSelecionada, setMateriaSelecionada] = useState<number | "">("");
+    const [materiasIds, setMateriasIds] = useState<number[]>([]);
+
+
     // Sidebar
     const handleMenuSelect = (menu: string) => {
         setActiveMenu(menu);
         if (menu === "conta") navigate("/conta-professor");
         if (menu === "geral") navigate("/geral-professor");
+        if (menu === "qrcode") navigate("/gerar-qrcode")
     };
 
     const handleSidebarToggle = (collapsed: boolean) => {
@@ -130,7 +134,7 @@ export function CriarTurma() {
                                             className="form-control form-control-lg"
                                             value={ano}
                                             onChange={(e) => setAno(e.target.value.replace(/\D/g, "").slice(0, 4))}
-                                            placeholder="2025"
+                                            placeholder="Ex: 2025"
                                             maxLength={4}
                                         />
                                     </div>
@@ -141,7 +145,7 @@ export function CriarTurma() {
                                             value={semestre}
                                             onChange={(e) => setSemestre(e.target.value)}
                                         >
-                                            <option value="">Selecione</option>
+                                            <option value="" disabled>Selecione</option>
                                             <option value="1">1º Semestre</option>
                                             <option value="2">2º Semestre</option>
                                         </select>
@@ -160,16 +164,18 @@ export function CriarTurma() {
                                     ) : (
                                         <select
                                             className="form-select form-select-lg"
-                                            value={materiasIds || ""}
-                                            onChange={(e) => setMateriaId(Number(e.target.value))}
+                                            value={materiasIds[0] || ""}
+                                            onChange={(e) => setMateriasIds([Number(e.target.value)])}
                                         >
-                                            <option value="">Selecione uma matéria</option>
+
+                                            <option value="" disabled>Selecione uma matéria</option>
                                             {materias.map((materia) => (
                                                 <option key={materia.id} value={materia.id}>
                                                     {materia.nomeMateria}
                                                 </option>
                                             ))}
                                         </select>
+
                                     )}
                                 </div>
 

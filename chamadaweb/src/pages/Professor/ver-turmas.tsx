@@ -4,10 +4,25 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import "../../../src/css/turmas.css";
 
+/* ================== TIPAGENS DECENTES ================== */
+interface Materia {
+  id: number;
+  nomeMateria: string;
+}
+
+interface Turma {
+  id: number;
+  nomeCurso: string;
+  ano: string;
+  semestre: string;
+  codigo: string;
+  materias: Materia[];
+}
+
 export function VerTurmas() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [activeMenu, setActiveMenu] = useState("geral");
-  const [turmas, setTurmas] = useState<any[]>([]);
+  const [turmas, setTurmas] = useState<Turma[]>([]);
 
   const navigate = useNavigate();
 
@@ -15,6 +30,7 @@ export function VerTurmas() {
     setActiveMenu(menu);
     if (menu === "conta") navigate("/conta-professor");
     if (menu === "geral") navigate("/geral-professor");
+    if (menu === "qrcode") navigate("/gerar-qrcode")
   };
 
   const handleSidebarToggle = (collapsed: boolean) => {
@@ -25,28 +41,49 @@ export function VerTurmas() {
     const carregarTurmas = async () => {
       try {
         const token = localStorage.getItem("token");
+
         const res = await api.get("/turma/ver-turmas", {
           headers: { Authorization: `Bearer ${token}` },
         });
+
+
         setTurmas(res.data.turmas ?? []);
       } catch (err) {
-        console.error(err);
+        console.error("Erro ao buscar turmas:", err);
       }
     };
+
     carregarTurmas();
   }, []);
 
-  const TurmaCard = (turma: any) => (
+  const TurmaCard = (turma: Turma) => (
     <div
       key={turma.id}
       className="turma-card"
       onClick={() => navigate(`/turma/${turma.id}`)}
     >
       <h3>{turma.nomeCurso}</h3>
+
       <div className="turma-info">
-        <span><strong>Ano:</strong> {turma.ano}</span>
-        <span><strong>Semestre:</strong> {turma.semestre}º</span>
+        <span>
+          <strong>Ano:</strong> {turma.ano}
+        </span>
+
+        <span>
+          <strong>Matéria:</strong>{" "}
+          {turma.materias && turma.materias.length > 0
+            ? turma.materias.map((m) => m.nomeMateria).join(", ")
+            : "Nenhuma matéria vinculada"}
+        </span>
+
+
+        <span>
+          <strong>Semestre:</strong> {turma.semestre}º
+        </span>
+
         <span className="codigo">{turma.codigo}</span>
+
+
       </div>
     </div>
   );
@@ -59,19 +96,16 @@ export function VerTurmas() {
         onToggle={handleSidebarToggle}
       />
 
-      {/* MESMA COISA NO MOBILE E NO DESKTOP — SÓ MUDA O TAMANHO */}
       <div className="turmas-page">
         <div className="turmas-container">
-          {/* Cabeçalho roxo foda */}
           <div className="turmas-header">
             <h2>Minhas Turmas</h2>
             <p>Toque ou clique em uma turma para ver detalhes</p>
           </div>
 
-          {/* Lista com SCROLL INTERNO */}
           <div className="turmas-lista">
             {turmas.length > 0 ? (
-              turmas.map(TurmaCard)
+              turmas.map((turma) => TurmaCard(turma))
             ) : (
               <div className="turma-vazia">
                 <i className="bi bi-inbox"></i>

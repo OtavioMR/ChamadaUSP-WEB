@@ -22,7 +22,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onMenuSelect, activeMenu = 'inicio', 
     const menuItems = [
         { key: 'geral', label: 'Geral', icon: <InicioIcon /> },
         { key: 'chamadas', label: 'Chamadas', icon: <ChamadasIcon /> },
-        { key: 'qrcode', label: 'Gerar QrCode', icon: <ColetaIcon /> },
         { key: 'conta', label: 'Conta', icon: <ContaIcon /> },
     ];
 

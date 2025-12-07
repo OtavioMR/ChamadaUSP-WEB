@@ -1,6 +1,6 @@
 import Sidebar from "../../components/Sidebar";
 import { useState } from "react";
-import { FaPlusCircle, FaUsers, FaCog } from "react-icons/fa";
+import { FaPlusCircle, FaUsers, FaCog, FaQrcode } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../../../src/css/inicioProfessor.css";
 
@@ -20,8 +20,8 @@ export function InicioProfessor() {
 
   const cards = [
     { icon: <FaPlusCircle />, title: "Criar Turma", route: "/criar-turma" },
+    { icon: <FaQrcode />, title: "Gerar Chamada", route: "/gerar-qrcode" },
     { icon: <FaUsers />, title: "Ver Turmas", route: "/turmas-professor" },
-    { icon: <FaCog />, title: "Opções das Turmas", route: "#" },
   ];
 
   return (
