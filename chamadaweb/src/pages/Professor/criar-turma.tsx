@@ -27,7 +27,7 @@ export function CriarTurma() {
     const [errorMaterias, setErrorMaterias] = useState<string | null>(null);
 
     const [materiaSelecionada, setMateriaSelecionada] = useState<number | "">("");
-    const [materiasIds, setMateriasIds] = useState<number[]>([]);
+    const [materiaId, setMateriaId] = useState<number | "">("");
 
 
     // Sidebar
@@ -64,7 +64,7 @@ export function CriarTurma() {
 
     // Criar turma
     const handleCriarTurma = async () => {
-        if (!nomeCurso.trim() || !ano.trim() || !semestre || !materiasIds) {
+        if (!nomeCurso.trim() || !ano.trim() || !semestre || !materiaId) {
             alert("Preencha todos os campos obrigatórios!");
             return;
         }
@@ -76,7 +76,7 @@ export function CriarTurma() {
                 nomeCurso: nomeCurso.trim(),
                 ano: parseInt(ano),
                 semestre: parseInt(semestre),
-                materiasIds,
+                materiaId: materiaId,
             };
 
             // Se o professor digitou uma nova matéria, envia o nome dela também
@@ -164,10 +164,9 @@ export function CriarTurma() {
                                     ) : (
                                         <select
                                             className="form-select form-select-lg"
-                                            value={materiasIds[0] || ""}
-                                            onChange={(e) => setMateriasIds([Number(e.target.value)])}
+                                            value={materiaId || ""}
+                                            onChange={(e) => setMateriaId(Number(e.target.value))}
                                         >
-
                                             <option value="" disabled>Selecione uma matéria</option>
                                             {materias.map((materia) => (
                                                 <option key={materia.id} value={materia.id}>
@@ -175,6 +174,7 @@ export function CriarTurma() {
                                                 </option>
                                             ))}
                                         </select>
+
 
                                     )}
                                 </div>

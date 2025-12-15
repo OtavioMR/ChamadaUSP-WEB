@@ -26,6 +26,7 @@ export default function LoginAluno() {
             console.log("Logado!", response.data);
             alert("Login realizado!");
 
+            navigate("")
             setEmail("");
             setSenha("");
         } catch (error: any) {

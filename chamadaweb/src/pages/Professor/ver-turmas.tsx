@@ -16,7 +16,7 @@ interface Turma {
   ano: string;
   semestre: string;
   codigo: string;
-  materias: Materia[];
+  materia: Materia | null;
 }
 
 export function VerTurmas() {
@@ -71,10 +71,9 @@ export function VerTurmas() {
 
         <span>
           <strong>Matéria:</strong>{" "}
-          {turma.materias && turma.materias.length > 0
-            ? turma.materias.map((m) => m.nomeMateria).join(", ")
-            : "Nenhuma matéria vinculada"}
+          {turma.materia ? turma.materia.nomeMateria : "Nenhuma matéria vinculada"}
         </span>
+
 
 
         <span>

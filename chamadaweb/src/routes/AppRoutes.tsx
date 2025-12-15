@@ -8,6 +8,7 @@ import { ContaProfessor } from "../pages/Professor/conta";
 import { CriarTurma } from "../pages/Professor/criar-turma";
 import { VerTurmas } from "../pages/Professor/ver-turmas";
 import { GerarQRCode } from "../pages/Professor/gerarQRCode";
+import RegistrarPresenca from "../pages/Home/Aluno/registrarPresenca";
 
 
 export default function AppRoutes() {
@@ -22,7 +23,9 @@ export default function AppRoutes() {
                 <Route path="/conta-professor" element={< ContaProfessor />} />
                 <Route path="/criar-turma" element={< CriarTurma />} />
                 <Route path="/turmas-professor" element={< VerTurmas />} />
-                  <Route path="/gerar-qrcode" element={< GerarQRCode />} />
+                <Route path="/gerar-qrcode" element={< GerarQRCode />} />
+                {/* Rota dinâmica com parâmetro :codigoChamada */}
+                <Route path="/aluno/presenca/registrar/:codigoChamada" element={<RegistrarPresenca />} />
             </Routes>
         </BrowserRouter>
     );
