@@ -20,6 +20,7 @@ export function GerarQRCode() {
         setActiveMenu(menu);
         if (menu === "conta") navigate("/conta-professor");
         if (menu === "geral") navigate("/geral-professor");
+         if(menu === 'chamadas') navigate("/chamadas-professor")
     };
 
     const handleSidebarToggle = (collapsed: boolean) => {

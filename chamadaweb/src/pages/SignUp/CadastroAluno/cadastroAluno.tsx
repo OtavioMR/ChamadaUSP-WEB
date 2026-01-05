@@ -33,8 +33,9 @@ export default function CadastroAluno() {
             setSenha("");
 
         } catch (error: any) {
-            console.error(error);
-            alert("Dados inválidas!");
+            console.error("Erro:", error.response);
+            alert(error.response?.data?.message);
+
         }
     }
 

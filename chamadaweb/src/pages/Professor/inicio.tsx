@@ -12,6 +12,7 @@ export function InicioProfessor() {
   const handleMenuSelect = (menu: string) => {
     setActiveMenu(menu);
     if (menu === "conta") navigate("/conta-professor");
+     if(menu === 'chamadas') navigate("/chamadas-professor")
   };
 
   const handleSidebarToggle = (collapsed: boolean) => {

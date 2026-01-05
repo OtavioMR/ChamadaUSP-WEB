@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 // Ícones (substitua por seus próprios ícones ou biblioteca de ícones)
 const InicioIcon = () => <span><i className="bi bi-people-fill"></i></span>;
 const ChamadasIcon = () => <span><i className="bi bi-collection-fill"></i></span>;
-const ColetaIcon = () => <span><i className="bi bi-qr-code"></i></span>;
 const ContaIcon = () => <span><i className="bi bi-person-circle"></i></span>;
 
 interface SidebarProps {
@@ -97,7 +96,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onMenuSelect, activeMenu = 'inicio', 
             </div>
 
             {/* Botão Sair Mobile - aparece apenas em telas pequenas */}
-            <button
+            {/* <button
                 className="mobile-logout-btn"
                 onClick={handleLogout}
                 aria-label="Sair"
@@ -109,7 +108,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onMenuSelect, activeMenu = 'inicio', 
                     </svg>
                 </div>
                 <div className="mobile-logout-text">Sair</div>
-            </button>
+            </button> */}
         </>
     );
 };

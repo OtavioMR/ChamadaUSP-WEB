@@ -17,7 +17,8 @@ export function ContaProfessor() {
   const handleMenuSelect = (menu: string) => {
     setActiveMenu(menu);
     if (menu === "geral") navigate("/geral-professor");
-    if (menu === "qrcode") navigate("/gerar-qrcode")
+    if (menu === "qrcode") navigate("/gerar-qrcode");
+    if (menu === 'chamadas') navigate("/chamadas-professor")
   };
 
   const handleSidebarToggle = (collapsed: boolean) => {

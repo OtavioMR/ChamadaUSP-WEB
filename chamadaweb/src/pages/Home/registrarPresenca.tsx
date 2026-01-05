@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import api from "../../../services/api";
+import api from "../../services/api";
 
 export default function RegistrarPresenca() {
     const { codigoChamada } = useParams<{ codigoChamada: string }>();

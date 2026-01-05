@@ -35,7 +35,8 @@ export function CriarTurma() {
         setActiveMenu(menu);
         if (menu === "conta") navigate("/conta-professor");
         if (menu === "geral") navigate("/geral-professor");
-        if (menu === "qrcode") navigate("/gerar-qrcode")
+        if (menu === "qrcode") navigate("/gerar-qrcode");
+        if (menu === 'chamadas') navigate("/chamadas-professor")
     };
 
     const handleSidebarToggle = (collapsed: boolean) => {

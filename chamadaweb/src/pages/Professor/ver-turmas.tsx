@@ -30,7 +30,8 @@ export function VerTurmas() {
     setActiveMenu(menu);
     if (menu === "conta") navigate("/conta-professor");
     if (menu === "geral") navigate("/geral-professor");
-    if (menu === "qrcode") navigate("/gerar-qrcode")
+    if (menu === "qrcode") navigate("/gerar-qrcode");
+    if(menu === 'chamadas') navigate("/chamadas-professor")
   };
 
   const handleSidebarToggle = (collapsed: boolean) => {
@@ -45,7 +46,6 @@ export function VerTurmas() {
         const res = await api.get("/turma/ver-turmas", {
           headers: { Authorization: `Bearer ${token}` },
         });
-
 
         setTurmas(res.data.turmas ?? []);
       } catch (err) {
@@ -73,8 +73,6 @@ export function VerTurmas() {
           <strong>Matéria:</strong>{" "}
           {turma.materia ? turma.materia.nomeMateria : "Nenhuma matéria vinculada"}
         </span>
-
-
 
         <span>
           <strong>Semestre:</strong> {turma.semestre}º
