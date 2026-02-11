@@ -17,7 +17,7 @@ export default function AppRoutes() {
         <BrowserRouter>
             <Routes>
                 <Route path="/login-professor" element={<LoginProfessor />} />
-                <Route path="/login-aluno" element={<LoginAluno />} />
+                {/* <Route path="/login-aluno" element={<LoginAluno />} /> */}
                 <Route path="/cadastro-aluno" element={<CadastroAluno />} />
                 <Route path="/cadastro-professor" element={<CadastroProfessor />} />
                 <Route path="/geral-professor" element={<InicioProfessor />} />
@@ -27,7 +27,8 @@ export default function AppRoutes() {
                 <Route path="/gerar-qrcode" element={< GerarQRCode />} />
                 <Route path="/chamadas-professor" element={< ChamadasProfessor />} />
                 {/* Rota dinâmica com parâmetro :codigoChamada */}
-                <Route path="/aluno/presenca/registrar/:codigoChamada" element={<RegistrarPresenca />} />
+                {/* <Route path="/aluno/presenca/registrar/:codigoChamada" element={<RegistrarPresenca />} /> */}
+                <Route path="/aluno/presenca/registrar/:codigoChamada/:codigoJanela"element={<LoginAluno />}/>
                 <Route path="/professor/presenca/listar/:codigo" element={<Presencas />} />
             </Routes>
         </BrowserRouter>
