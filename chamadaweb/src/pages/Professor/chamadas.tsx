@@ -61,7 +61,7 @@ export function ChamadasProfessor() {
             <div className="turma-info">
                 <span>
                     <strong>Criada em:</strong>{" "}
-                    {new Date(chamada.criadaEm).toLocaleDateString("pt-BR")}
+                    {new Date(chamada.criadaEm).toLocaleString("pt-BR")}
                 </span>
 
                 <span className="codigo">

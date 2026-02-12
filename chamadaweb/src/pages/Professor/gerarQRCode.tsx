@@ -14,7 +14,7 @@ export function GerarQRCode() {
     const [turmaSelecionada, setTurmaSelecionada] = useState("");
     const [chamadaAtiva, setChamadaAtiva] = useState<any>(null);
 
-    const [tempoRestante, setTempoRestante] = useState<number>(0);
+    var [tempoRestante, setTempoRestante] = useState<number>(0);
 
     const handleMenuSelect = (menu: string) => {
         setActiveMenu(menu);
@@ -106,6 +106,33 @@ export function GerarQRCode() {
 
         buscarTurmas();
     }, []);
+
+
+
+
+
+    const fecharChamada = async () => {
+        const token = localStorage.getItem("token");
+
+        try {
+            const payload: any = {
+                codigoChamada: chamadaAtiva.codigoChamada,
+            };
+
+            await api.patch("/chamada/atualizar-chamada", payload, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
+            alert("Chamada fechada com sucesso!");
+            setTempoRestante(0);
+            setChamadaAtiva(null); // opcional, se quiser sumir com o QR
+        } catch (error: any) {
+            alert(error.response?.data?.message || "Erro ao fechar chamada");
+        }
+    }
+
+
+
 
     return (
         <div className={`main-content ${sidebarCollapsed ? "collapsed" : ""}`}>
@@ -202,10 +229,29 @@ export function GerarQRCode() {
                                 <div className="text-start px-4 titulo">
                                     <p>
                                         <strong>Código da chamada:{" "}
-                                        {chamadaAtiva.codigoChamada}
+                                            {chamadaAtiva.codigoChamada}
                                         </strong>
                                     </p>
                                 </div>
+
+
+
+                                <div className="col-md-12 d-flex justify-content-center align-itens-center text-center">
+
+
+
+                                    <div className="col-md-4">
+                                        <div className="btn btn-primary w-100 fw-bold d-flex justify-content-center align-items-center" onClick={fecharChamada}>
+                                            Fechar chamada
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+
                             </div>
                         )}
 

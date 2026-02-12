@@ -1,164 +1,105 @@
-/* src/css/criarTurma.css — VERSÃO FINAL 100% FUNCIONANDO + RESPONSIVO PERFEITO */
-
 .criar-turma-wrapper {
   min-height: 100vh;
   background: #f3f4f6;
-  padding: 40px 20px 100px;
+  padding: 40px 20px;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
 }
 
-/* Card do formulário */
 .form-card {
-  background: white;
-  border-radius: 20px;
-  padding: 45px 40px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px;
   width: 100%;
   max-width: 600px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e8e8e8;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
 }
 
-/* Inputs */
+/* INPUTS E SELECT */
 .form-control,
-.form-select,
-.inputMateria {
+.form-select {
   height: 56px;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1.5px solid #ddd;
-  font-size: 1.05rem;
-  padding: 0 18px;
+  font-size: 1rem;
+  padding: 0 16px;
 }
 
 .form-control:focus,
 .form-select:focus {
   border-color: #5a2cc7;
-  box-shadow: 0 0 0 4px rgba(90, 44, 199, 0.15);
+  box-shadow: 0 0 0 3px rgba(90, 44, 199, 0.15);
 }
 
-/* ================= BOTÕES ================= */
+/* BOTÕES */
 .botao-container {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   margin-top: 30px;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .botao-criar,
 .botao-cancelar {
-  min-width: 180px;
-  height: 56px;
-  border-radius: 14px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
   flex: 1;
-  max-width: 220px;
+  height: 56px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+  border: none;
 }
 
 .botao-criar {
   background: #5a2cc7;
-  border: none;
-  color: white;
+  color: #fff;
 }
 
 .botao-criar:hover {
   background: #4a1fb8;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(90, 44, 199, 0.3);
+  transform: translateY(-2px);
 }
 
 .botao-cancelar {
-  background: white;
+  background: #fff;
+  border: 1.5px solid #ddd;
   color: #666;
-  border: 2px solid #ddd;
 }
 
 .botao-cancelar:hover {
   border-color: #bbb;
   color: #444;
-  transform: translateY(-3px);
 }
 
-/* ================= RESPONSIVO PERFEITO (CORRIGIDO E MELHORADO) ================= */
-
-@media (max-width: 992px) {
-  /* Tablet e telas menores com sidebar */
-  .criar-turma-wrapper {
-    padding: 30px 20px 100px;
-  }
-
-  .form-card {
-    padding: 40px 35px;
-    max-width: 560px;
-  }
+/* INPUT + BOTÃO LADO A LADO */
+.input-com-botao {
+  display: flex;
+  gap: 12px;
 }
 
+.input-com-botao input {
+  flex: 1;
+}
+
+.input-com-botao button {
+  width: 160px;
+}
+
+/* RESPONSIVO */
 @media (max-width: 768px) {
-  /* Remove qualquer margem lateral causada pela sidebar */
-  .main-content,
-  .main-content.collapsed {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .criar-turma-wrapper {
-    padding: 20px 16px 90px;
-    align-items: stretch;
-  }
-
   .form-card {
-    padding: 38px 28px;
-    border-radius: 18px;
-    max-width: 100%;
+    padding: 30px 20px;
   }
 
   .botao-container {
     flex-direction: column;
-    gap: 16px;
   }
 
-  .botao-criar,
-  .botao-cancelar {
+  .input-com-botao {
+    flex-direction: column;
+  }
+
+  .input-com-botao button {
     width: 100%;
-    max-width: none;
-    height: 56px;
-    font-size: 1.1rem;
   }
-}
-
-@media (max-width: 480px) {
-  .criar-turma-wrapper {
-    padding: 15px 12px 80px;
-  }
-
-  .form-card {
-    padding: 32px 20px;
-    border-radius: 16px;
-  }
-
-  .form-control,
-  .form-select,
-  .inputMateria {
-    height: 54px;
-    font-size: 1rem;
-  }
-
-  .botao-criar,
-  .botao-cancelar {
-    height: 54px;
-    font-size: 1.05rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-}
-
-/* Extra: garante que não tenha scroll horizontal indesejado */
-* {
-  box-sizing: border-box;
 }
