@@ -2,7 +2,7 @@ import Sidebar from "../../components/Sidebar";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaQrcode } from "react-icons/fa";
-import QRCode from "react-qr-code";  // Ótima escolha!
+import QRCode from "react-qr-code";
 import api from "../../services/api";
 
 export function GerarQRCode() {
@@ -12,22 +12,21 @@ export function GerarQRCode() {
 
     const [turmas, setTurmas] = useState<any[]>([]);
     const [turmaSelecionada, setTurmaSelecionada] = useState("");
-
-    // Novo estado: guarda TODA a resposta do backend
     const [chamadaAtiva, setChamadaAtiva] = useState<any>(null);
+
+    var [tempoRestante, setTempoRestante] = useState<number>(0);
 
     const handleMenuSelect = (menu: string) => {
         setActiveMenu(menu);
         if (menu === "conta") navigate("/conta-professor");
         if (menu === "geral") navigate("/geral-professor");
-         if(menu === 'chamadas') navigate("/chamadas-professor")
+        if (menu === "chamadas") navigate("/chamadas-professor");
     };
 
     const handleSidebarToggle = (collapsed: boolean) => {
         setSidebarCollapsed(collapsed);
     };
 
-    // Verifica se já existe chamada aberta para a turma
     const buscarChamadaAberta = async () => {
         if (!turmaSelecionada) {
             alert("Escolhe uma turma primeiro.");
@@ -35,50 +34,70 @@ export function GerarQRCode() {
         }
 
         try {
-            console.log("Gerando QR para turma:", turmaSelecionada); // debug
-            const token = localStorage.getItem('token');
-            const res = await api.post("/qr-code/gerar",
-                { codigoTurma: turmaSelecionada },  // body correto
+            const token = localStorage.getItem("token");
+
+            const res = await api.post(
+                "/qr-code/gerar",
+                { codigoTurma: turmaSelecionada },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
             setChamadaAtiva(res.data);
-            alert(res.data.mensagem); // vai dizer se criou nova ou reutilizou
+            alert(res.data.mensagem);
 
         } catch (error: any) {
-            console.error("Erro ao gerar QR:", error.response);
+            alert(
+                error.response?.data?.mensagem ||
+                error.response?.data?.message ||
+                "Erro ao gerar QR Code"
+            );
+        }
+    };
 
-            if (error.response?.status === 401) {
-                // opcional: navigate("/login");
-            } else {
-                alert(error.response?.data?.mensagem || error.response?.data?.message || "Erro ao gerar QR Code");
+    /**
+     * 🔥 Contador regressivo do professor
+     */
+    useEffect(() => {
+        if (!chamadaAtiva?.expiraEm) {
+            setTempoRestante(0);
+            return;
+        }
+
+        const dataExpiracao = new Date(
+            chamadaAtiva.expiraEm
+        ).getTime();
+
+        const calcular = () => {
+            const diferenca = Math.floor(
+                (dataExpiracao - Date.now()) / 1000
+            );
+            return diferenca > 0 ? diferenca : 0;
+        };
+
+        setTempoRestante(calcular());
+
+        const intervalo = setInterval(() => {
+            const restante = calcular();
+            setTempoRestante(restante);
+
+            if (restante <= 0) {
+                clearInterval(intervalo);
             }
-        }
-    };
+        }, 1000);
 
-    const gerarQRCode = async (codigo: string) => {
-        try {
-            const token = localStorage.getItem('token');
-            const res = await api.post("/qr-code/gerar", { codigoTurma: codigo }, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+        return () => clearInterval(intervalo);
 
-            alert(res.data.mensagem);
-            setChamadaAtiva(res.data);  // Guarda tudo: link, código, turma, etc.
-
-            console.log("Chamada criada:", res.data.codigoChamada);
-        } finally {
-
-        }
-    };
+    }, [chamadaAtiva]);
 
     useEffect(() => {
         const buscarTurmas = async () => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem("token");
+
             try {
                 const res = await api.get("/turma/ver-turmas", {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}` },
                 });
+
                 setTurmas(res.data.turmas || []);
             } catch (error) {
                 console.error("Erro ao buscar turmas:", error);
@@ -87,6 +106,33 @@ export function GerarQRCode() {
 
         buscarTurmas();
     }, []);
+
+
+
+
+
+    const fecharChamada = async () => {
+        const token = localStorage.getItem("token");
+
+        try {
+            const payload: any = {
+                codigoChamada: chamadaAtiva.codigoChamada,
+            };
+
+            await api.patch("/chamada/atualizar-chamada", payload, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
+            alert("Chamada fechada com sucesso!");
+            setTempoRestante(0);
+            setChamadaAtiva(null); // opcional, se quiser sumir com o QR
+        } catch (error: any) {
+            alert(error.response?.data?.message || "Erro ao fechar chamada");
+        }
+    }
+
+
+
 
     return (
         <div className={`main-content ${sidebarCollapsed ? "collapsed" : ""}`}>
@@ -97,10 +143,13 @@ export function GerarQRCode() {
             />
 
             <div className="container-fluid px-5 pt-5">
-                <h2 className="text-center fw-bold mb-5 text-dark">Gerar Chamada com QR Code</h2>
+                <h2 className="text-center fw-bold mb-5 text-dark">
+                    Gerar Chamada com QR Code
+                </h2>
 
                 <div className="row justify-content-center">
                     <div className="col-md-6">
+
                         <div className="card shadow p-4 text-center">
                             <h5 className="fw-bold mb-3">
                                 <FaQrcode className="me-2" />
@@ -110,11 +159,18 @@ export function GerarQRCode() {
                             <select
                                 className="form-select mb-4"
                                 value={turmaSelecionada}
-                                onChange={(e) => setTurmaSelecionada(e.target.value)}
+                                onChange={(e) =>
+                                    setTurmaSelecionada(e.target.value)
+                                }
                             >
-                                <option value="">Selecione uma turma</option>
+                                <option value="">
+                                    Selecione uma turma
+                                </option>
                                 {turmas.map((turma) => (
-                                    <option key={turma.codigo} value={turma.codigo}>
+                                    <option
+                                        key={turma.codigo}
+                                        value={turma.codigo}
+                                    >
                                         {turma.nomeCurso} - {turma.codigo}
                                     </option>
                                 ))}
@@ -128,12 +184,37 @@ export function GerarQRCode() {
                             </button>
                         </div>
 
-                        {/* Exibe QR Code se houver chamada ativa (nova ou já existente) */}
                         {chamadaAtiva && (
                             <div className="card shadow mt-5 p-4 text-center">
-                                <h5 className="fw-bold mb-4">
+                                <h5 className="fw-bold mb-2">
                                     QR Code da chamada - Turma {chamadaAtiva.turma}
                                 </h5>
+
+                                {/* 🔥 Contador */}
+                                {tempoRestante > 0 ? (
+                                    <p
+                                        style={{
+                                            color: "#d9534f",
+                                            fontWeight: "bold",
+                                            fontSize: "18px",
+                                        }}
+                                    >
+                                        Expira em{" "}
+                                        {Math.floor(tempoRestante / 60)}:
+                                        {(tempoRestante % 60)
+                                            .toString()
+                                            .padStart(2, "0")}
+                                    </p>
+                                ) : (
+                                    <p
+                                        style={{
+                                            color: "gray",
+                                            fontWeight: "bold",
+                                        }}
+                                    >
+                                        QR expirado.
+                                    </p>
+                                )}
 
                                 <div className="d-flex justify-content-center mb-4">
                                     <QRCode
@@ -142,18 +223,38 @@ export function GerarQRCode() {
                                         level="H"
                                         bgColor="#FFFFFF"
                                         fgColor="#000000"
-                                    // Removido: includeMargin não existe nessa lib
                                     />
                                 </div>
 
-                                <div className="text-start px-4">
-                                    <p><strong>Código da chamada:</strong> {chamadaAtiva.codigoChamada}</p>
-                                    <p className="text-muted small">
-                                        {chamadaAtiva.descricao || "Alunos só precisam escanear isso pra registrar presença"}
+                                <div className="text-start px-4 titulo">
+                                    <p>
+                                        <strong>Código da chamada:{" "}
+                                            {chamadaAtiva.codigoChamada}
+                                        </strong>
                                     </p>
                                 </div>
+
+
+
+                                <div className="col-md-12 d-flex justify-content-center align-itens-center text-center">
+
+
+
+                                    <div className="col-md-4">
+                                        <div className="btn btn-primary w-100 fw-bold d-flex justify-content-center align-items-center" onClick={fecharChamada}>
+                                            Fechar chamada
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+
                             </div>
                         )}
+
                     </div>
                 </div>
             </div>

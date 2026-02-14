@@ -61,9 +61,10 @@ export default function CadastroProfessor() {
                         <button className="btn btn-light d-flex align-items-center gap-2 cadastrar w-100"
                             onClick={irParaCadastro}>
 
-                            <span className="ms-auto">Fazer Login</span>
-                            <i className="bi bi-arrow-right-square fs-3 icon-normal"></i>
-                            <i className="bi bi-arrow-right-square-fill fs-3 icon-hover"></i>
+                            <i className="bi bi-arrow-left-square fs-3 icon-normal"></i>
+                            <i className="bi bi-arrow-left-square-fill fs-3 icon-hover"></i>
+                            
+                            <span className="">Fazer Login</span>
 
                         </button>
                     </div>

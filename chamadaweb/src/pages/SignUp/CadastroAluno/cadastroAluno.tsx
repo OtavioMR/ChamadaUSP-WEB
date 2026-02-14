@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 export default function CadastroAluno() {
 
     const navigate = useNavigate();
-    function irParaCadastro() {
-        navigate('/login-aluno');
+    
+    function VoltarTurmas() {
+        navigate("/turmas-professor");
     }
 
     const [nomeCompleto, setNome] = useState("");
@@ -48,25 +49,26 @@ export default function CadastroAluno() {
 
                     <div className="col-md-12">
                         <button className="btn btn-light d-flex align-items-center gap-2 cadastrar w-100"
-                            onClick={irParaCadastro}>
+                            onClick={VoltarTurmas}>
 
-                            <span className="ms-auto">Fazer Login</span>
-                            <i className="bi bi-arrow-right-square fs-3 icon-normal"></i>
-                            <i className="bi bi-arrow-right-square-fill fs-3 icon-hover"></i>
+                           <i className="bi bi-arrow-left-square fs-3 icon-normal"></i>
+                            <i className="bi bi-arrow-left-square-fill fs-3 icon-hover"></i>
+                            
+                            <span className="">Voltar</span>
 
                         </button>
                     </div>
 
 
                     <div className="col-md-12 titulo">
-                        <h1>Cadastro</h1>
+                        <h1>Cadastro de Aluno</h1>
                     </div>
 
                     <div className="col-md-8 mb-3 text-start">
                         <label className="form-label">Nome Completo:</label>
                         <input type="text"
                             className="form-control"
-                            placeholder="Insira seu nome completo"
+                            placeholder="Insira o nome completo"
                             value={nomeCompleto}
                             onChange={(e) => setNome(e.target.value)}
                         />
@@ -76,7 +78,7 @@ export default function CadastroAluno() {
                         <label className="form-label">Número USP:</label>
                         <input type="text"
                             className="form-control"
-                            placeholder="Insira seu número USP"
+                            placeholder="Insira o número USP"
                             value={numeroUSP}
                             onChange={(e) => setNumero(e.target.value)}
                         />
@@ -88,7 +90,7 @@ export default function CadastroAluno() {
                         <input
                             type="email"
                             className="form-control"
-                            placeholder="Insira seu email"
+                            placeholder="Insira o email"
                             value={emailUSP}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -99,7 +101,7 @@ export default function CadastroAluno() {
                         <input
                             type="password"
                             className="form-control"
-                            placeholder="Insira sua senha"
+                            placeholder="Insira a senha"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
                         />

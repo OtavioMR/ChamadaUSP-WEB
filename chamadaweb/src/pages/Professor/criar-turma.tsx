@@ -43,23 +43,23 @@ export function CriarTurma() {
         setSidebarCollapsed(collapsed);
     };
 
+    const fetchMaterias = async () => {
+        try {
+            setLoadingMaterias(true);
+            const token = localStorage.getItem("token");
+            const response = await api.get("/materia/minhas-materias", {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setMaterias(response.data);
+        } catch (error: any) {
+            setErrorMaterias(error.response?.data?.message || "Erro ao carregar matérias");
+        } finally {
+            setLoadingMaterias(false);
+        }
+    };
+
     // Buscar matérias do professor ao carregar
     useEffect(() => {
-        const fetchMaterias = async () => {
-            try {
-                setLoadingMaterias(true);
-                const token = localStorage.getItem("token");
-                const response = await api.get("/materia/minhas-materias", {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-                setMaterias(response.data);
-            } catch (error: any) {
-                setErrorMaterias(error.response?.data?.message || "Erro ao carregar matérias");
-            } finally {
-                setLoadingMaterias(false);
-            }
-        };
-
         fetchMaterias();
     }, []);
 
@@ -95,6 +95,42 @@ export function CriarTurma() {
             alert(error.response?.data?.message || "Erro ao criar turma");
         }
     };
+
+    const CadastrarMateria = async () => {
+        if (!novaMateria.trim()) {
+            alert("Digite o nome da matéria.");
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+
+        try {
+            const payload = {
+                nomeMateria: novaMateria.trim()
+            };
+
+            const response = await api.post(
+                "/materia/cadastrar-materia",
+                payload,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            alert("Matéria adicionada com sucesso!");
+
+            const materiaCriada = response.data;
+
+            await fetchMaterias(); // atualiza lista
+
+            setMateriaId(materiaCriada.id); // 🔥 seleciona automaticamente
+
+            setNovaMateria("");
+
+        } catch (err: any) {
+            alert(err.response?.data?.message || "Erro ao cadastrar matéria!");
+        }
+    };
+
+
 
     return (
         <div className={`main-content ${sidebarCollapsed ? "collapsed" : ""}`}>
@@ -177,25 +213,41 @@ export function CriarTurma() {
                                         </select>
 
 
+
                                     )}
                                 </div>
-
                                 {/* Campo opcional para nova matéria */}
                                 <div className="mb-4">
                                     <label className="form-label fw-semibold text-muted">
                                         Ou digite uma nova matéria (opcional)
                                     </label>
-                                    <input
-                                        type="text"
-                                        className="form-control form-control-lg"
-                                        value={novaMateria}
-                                        onChange={(e) => setNovaMateria(e.target.value)}
-                                        placeholder="Ex: Redes"
-                                    />
+
+                                    <div className="input-com-botao mb-3">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={novaMateria}
+                                            onChange={(e) => setNovaMateria(e.target.value)}
+                                            placeholder="Ex: Redes"
+                                        />
+
+                                        <button
+                                            type="button"
+                                            className="botao-criar"
+                                            onClick={CadastrarMateria}
+                                        >
+                                            Adicionar
+                                        </button>
+                                    </div>
+
+
+
                                     <small className="text-muted">
                                         Deixe em branco se for usar uma matéria já existente
                                     </small>
                                 </div>
+
+
 
                                 {/* Botões */}
                                 <div className="botao-container">
